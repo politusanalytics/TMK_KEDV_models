@@ -40,13 +40,9 @@ class MultiLabelSectorClassifier(PreTrainedModel):
 
     def __init__(self, config):
         super().__init__(config)
-        encoder_config = AutoConfig.from_pretrained(
-            "dbmdz/bert-base-turkish-128k-uncased"
-        )
+        encoder_config = AutoConfig.from_pretrained("dbmdz/bert-base-turkish-128k-uncased")
         self.encoder = BertModel(encoder_config)
-        self.classifier = torch.nn.Linear(
-            self.encoder.config.hidden_size, config.num_classes
-        )
+        self.classifier = torch.nn.Linear(self.encoder.config.hidden_size, config.num_classes)
         self.label_list = [
             "Basic \nNeeds",
             "Nutrition",
@@ -60,22 +56,15 @@ class MultiLabelSectorClassifier(PreTrainedModel):
             "Psycho-social-Support-and-protection",
         ]
 
-    def forward(
-        self,
-        input_ids,
-        attention_mask,
-        token_type_ids=None,
-    ):
+    def forward(self, input_ids, attention_mask, token_type_ids):
         if token_type_ids is not None:
-            with torch.no_grad():
-                embeddings = self.encoder(
-                    input_ids,
-                    attention_mask=attention_mask,
-                    token_type_ids=token_type_ids,
-                )[1]
+            embeddings = self.encoder(
+                input_ids,
+                attention_mask=attention_mask,
+                token_type_ids=token_type_ids,
+            )[1]
         else:
-            with torch.no_grad():
-                embeddings = self.encoder(input_ids, attention_mask=attention_mask)[1]
+            embeddings = self.encoder(input_ids, attention_mask=attention_mask)[1]
 
         return self.classifier(embeddings)
 
@@ -96,9 +85,7 @@ tokenizer = AutoTokenizer.from_pretrained("dbmdz/bert-base-turkish-128k-uncased"
 
 data = []
 
-with open(
-    "./all_relevant_user_tweets_info_binary_aid_predictions_06_28_2024.jsonl", "r"
-) as file:
+with open("./all_relevant_user_tweets_info_binary_aid_predictions_06_28_2024.jsonl", "r") as file:
     for line in file:
         tweet_dict: dict = json.loads(line)
         if tweet_dict.get("help_prediction") == 1:
