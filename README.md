@@ -1,6 +1,45 @@
 # TMK KEDV Models
-This repo includes the required code for running the trained models used for Oxfam project.
 
-We firstly run the earthquake relevant model on the tweets to see if its about earthquake or not. Later we run the aid relevant model. Lastly we run the aid sub-class model to classify the relevant earthquake aid activity. Those models are running on the tweets. 
+A collection of machine learning models for analyzing earthquake-related social media content, developed for the Oxfam project.
 
-After identifying all of the relevant tweets, we got the users of those tweets and run organization relevant model.
+## Setup
+
+1. Install Anaconda from [https://www.anaconda.com/download](https://www.anaconda.com/download)
+   > Note: Any recent version of Anaconda/Miniconda will work, as long as it can create environments with Python 3.8
+
+2. Create and activate environment:
+    ```bash
+    # Create environment and install dependencies in one go
+    conda create -n kedv python=3.8 pytorch torchvision torchaudio -c pytorch
+    conda activate kedv
+    pip install -r requirements.txt
+    ```
+
+## Model Pipeline
+
+The system processes tweets through a sequence of models:
+
+1. **Earthquake Detection**: Filters tweets related to earthquakes
+2. **Aid Recognition**: Identifies aid-related content from earthquake tweets
+3. **Aid Classification**: Categorizes the type of aid activity mentioned
+4. **Organization Detection**: Analyzes user profiles to identify organizational accounts
+
+## Usage
+
+Each model can be run independently using the following format:
+```bash
+python <model_name>.py --input <input_file> --output <output_file>
+```
+
+Example:
+```bash
+python earthquake_model.py --input tweets.json --output earthquake_results.json
+```
+
+## Dependencies
+
+Required packages and versions are listed in `requirements.txt`
+
+## License
+
+[Add License Information]
