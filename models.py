@@ -2,6 +2,9 @@ from transformers import PreTrainedModel, AutoConfig, BertModel, PretrainedConfi
 import torch
 from huggingface_hub import login
 from utils import preprocess
+import warnings
+
+warnings.filterwarnings("ignore")
 
 
 class BinaryConfig(PretrainedConfig):
