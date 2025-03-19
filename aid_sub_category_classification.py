@@ -41,14 +41,14 @@ class MultiLabelClassifier(PreTrainedModel):
 
 def process_batch_multi_label_classification(texts, model, tokenizer, device):
     model_inputs = tokenizer(texts, padding="max_length", truncation=True, max_length=120)
-    input_ids = model_inputs["input_ids"].to(device)
-    token_type_ids = model_inputs["token_type_ids"].to(device)
-    attention_mask = model_inputs["attention_mask"].to(device)
+    input_ids = model_inputs["input_ids"]
+    token_type_ids = model_inputs["token_type_ids"]
+    attention_mask = model_inputs["attention_mask"]
 
     output = model(
-        torch.tensor(input_ids),
-        torch.tensor(attention_mask),
-        torch.tensor(token_type_ids),
+        torch.tensor(input_ids).to(device),
+        torch.tensor(attention_mask).to(device),
+        torch.tensor(token_type_ids).to(device),
     )
     preds = output.detach().cpu().numpy()
     preds = [[int(y >= 0.0) for y in x] for x in preds]
