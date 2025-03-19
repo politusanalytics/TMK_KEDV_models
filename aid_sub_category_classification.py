@@ -6,8 +6,9 @@ import json
 import torch.nn as nn
 import sys
 import time
+from my_token import token
 
-login(token="YOUR TOKEN GOES HERE")
+login(token=token)
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 label_list = [
