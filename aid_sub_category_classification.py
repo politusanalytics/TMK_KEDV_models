@@ -64,7 +64,7 @@ def process_batch_multi_label_classification(texts, model, tokenizer, device):
                 other = 0
         predictions["Other"] = other
         all_predictions.append(predictions)
-    return all_predictions
+    return predictions
 
 
 if __name__ == "__main__":
@@ -95,11 +95,7 @@ if __name__ == "__main__":
     tokenizer = AutoTokenizer.from_pretrained("dbmdz/bert-base-turkish-128k-uncased")
 
     texts = [
-        "Yardıma ihtiyacımız var, çok fazla yaralı var.",
-        "Lütfen yardım edin, su ihtiyacımız var.",
-        "Deprem sonrası bir çok insan evsiz kaldı.",
-        "Deprem sonrası bir çok insan işsiz kaldı.",
-        "Yardım edin piskolojim çok bozuk.",
+        "Bugün su ihtiyacı olan köyümüze 1 ay yetecek kadar içilecek su tedarik ettik.",
     ]
 
     texts = [preprocess(text) for text in texts]
