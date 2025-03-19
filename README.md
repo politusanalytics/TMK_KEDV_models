@@ -10,36 +10,33 @@ A collection of machine learning models for analyzing earthquake-related social 
 2. Create and activate environment:
     ```bash
     # Create environment and install dependencies in one go
-    conda create -n kedv python=3.10.4 pytorch torchvision torchaudio -c pytorch
+    conda create -n kedv python=3.10.4
     conda activate kedv
-    pip install -r requirements.txt
+    pip install -r transformers torch numpy huggingface_hub
     ```
+    **Tested library versions for the development environment:**
+    - transformers==4.49.0
+    - torch==2.1.0+cu121
+    - numpy==1.26.3
+    - huggingface_hub==0.26.2
+
+    **Note:**
+    - We have tested with cuda version of 12.2.
+    - Although we tested with these versions, latest libraries should also work as well.
+
 
 ## Model Pipeline
 
-The system processes tweets through a sequence of models:
-
-1. **Earthquake Detection**: Filters tweets related to earthquakes
-2. **Aid Recognition**: Identifies aid-related content from earthquake tweets
-3. **Aid Classification**: Categorizes the type of aid activity mentioned
-4. **Organization Detection**: Analyzes user profiles to identify organizational accounts
+The model pipeline works in the following order:
+1. **Earthquake Detection**: Detect earthquake-relevant tweets.
+2. **Aid Recognition**: Identify if a tweet is about any aid activity.
+3. **Aid Subcategory Classification**: Determine the specific kind of aid activity.
 
 ## Usage
 
 Each model can be run independently using the following format:
 ```bash
-python <model_name>.py --input <input_file> --output <output_file>
+python <model_name>.py
 ```
 
-Example:
-```bash
-python earthquake_model.py --input tweets.json --output earthquake_results.json
-```
-
-## Dependencies
-
-Required packages and versions are listed in `requirements.txt`
-
-## License
-
-[Add License Information]
+You need to modify the scripts to run it for your own purposes.
