@@ -20,13 +20,13 @@ class BinaryClassifier(PreTrainedModel):
         self.encoder = BertModel(encoder_config)
         self.classifier = torch.nn.Linear(self.encoder.config.hidden_size, 1)
 
-    def forward(self, input_ids, input_mask, token_type_ids=None):
+    def forward(self, input_ids, attention_mask, token_type_ids=None):
         if token_type_ids is not None:
             embeddings = self.encoder(
-                input_ids, attention_mask=input_mask, token_type_ids=token_type_ids
+                input_ids, attention_mask=attention_mask, token_type_ids=token_type_ids
             )[1]
         else:
-            embeddings = self.encoder(input_ids, attention_mask=input_mask)[1]
+            embeddings = self.encoder(input_ids, attention_mask=attention_mask)[1]
 
         return self.classifier(embeddings)
 
