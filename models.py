@@ -47,7 +47,7 @@ def process_batch_binary_classification(texts, model, tokenizer, device):
     return predictions
 
 
-def get_model(model_path, tokenizer_path, hf_token=None):
+def get_binary_model(model_path, tokenizer_path, hf_token=None):
     if hf_token:
         login(token=hf_token)
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")

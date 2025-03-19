@@ -5,12 +5,12 @@ A collection of machine learning models for analyzing earthquake-related social 
 ## Setup
 
 1. Install Anaconda from [https://www.anaconda.com/download](https://www.anaconda.com/download)
-   > Note: Any recent version of Anaconda/Miniconda will work, as long as it can create environments with Python 3.8
+   > Note: Any recent version of Anaconda/Miniconda will work, as long as it can create environments with Python 3.10.4
 
 2. Create and activate environment:
     ```bash
     # Create environment and install dependencies in one go
-    conda create -n kedv python=3.8 pytorch torchvision torchaudio -c pytorch
+    conda create -n kedv python=3.10.4 pytorch torchvision torchaudio -c pytorch
     conda activate kedv
     pip install -r requirements.txt
     ```

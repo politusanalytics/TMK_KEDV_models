@@ -5,6 +5,3 @@ def preprocess(text):
         t = "http" if t.startswith("http") else t
         new_text.append(t)
     return " ".join(new_text)
-
-def load_model():
-    pass
