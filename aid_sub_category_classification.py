@@ -53,6 +53,8 @@ def process_batch_multi_label_classification(texts, model, tokenizer, device):
     preds = output.detach().cpu().numpy()
     preds = [[int(y >= 0.0) for y in x] for x in preds]
 
+    all_predictions = []
+
     for i in range(len(texts)):
         predictions = dict()
         other = 1
@@ -61,7 +63,8 @@ def process_batch_multi_label_classification(texts, model, tokenizer, device):
             if preds[i][j] == 1:
                 other = 0
         predictions["Other"] = other
-    return predictions
+        all_predictions.append(predictions)
+    return all_predictions
 
 
 if __name__ == "__main__":
