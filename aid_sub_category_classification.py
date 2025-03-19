@@ -61,7 +61,7 @@ def process_batch_multi_label_classification(texts, model, tokenizer, device):
             if preds[i][j] == 1:
                 other = 0
         predictions["Other"] = other
-    return preds
+    return predictions
 
 
 if __name__ == "__main__":
