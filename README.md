@@ -2,6 +2,12 @@
 
 A collection of machine learning models for analyzing earthquake-related social media content, developed for the Oxfam project.
 
+## Authentication
+
+You need to join our Politus organization in HuggingFace, and create a read token for accessing the models. Finally, you need to set the 'token' variable in 'my_token.py' file as your created token.
+
+> Note: You will get authentication error if you don't have this token.
+
 ## Setup
 
 1. Install Anaconda from [https://www.anaconda.com/download](https://www.anaconda.com/download)
@@ -12,7 +18,7 @@ A collection of machine learning models for analyzing earthquake-related social 
     # Create environment and install dependencies in one go
     conda create -n kedv python=3.10.4
     conda activate kedv
-    pip install -r transformers torch numpy huggingface_hub
+    pip install transformers torch numpy huggingface_hub
     ```
     **Tested library versions for the development environment:**
     - transformers==4.49.0
